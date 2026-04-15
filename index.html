@@ -1,137 +1,364 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>حاسبة الطاقة الشمسية</title>
-  <meta name="theme-color" content="#FF6F00">
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3105/3105807.png">
-  <style>
-    * { box-sizing: border-box; font-family: 'Cairo', Tahoma, sans-serif; }
-    body { background: #f5f5f5; padding: 10px; margin: 0; font-size: 14px; }
-    .container { max-width: 600px; margin: auto; background: white; padding: 15px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-    .card { background: #FFF8F1; padding: 12px; border-radius: 8px; margin-bottom: 12px; }
-    .section-title { background: #FF6F00; color: white; padding: 12px; border-radius: 8px; cursor: pointer; margin-bottom: 12px; font-weight: bold; text-align: center; }
-    .section-content { display: none; }
-    .section-content.show { display: block; }
-    label { display: block; margin: 6px 0 3px; font-weight: bold; font-size: 13px; }
-    input, select { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; }
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .result { background: #E3F2FD; padding: 15px; border-radius: 8px; text-align: center; }
-    .total { font-size: 24px; font-weight: bold; color: #0D47A1; margin: 8px 0; }
-    .btn { padding: 10px; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; margin-top: 6px; }
-    .btn-add { background: #4CAF50; color: white; width: 100%; }
-    .btn-del { background: #f44336; color: white; padding: 4px 8px; font-size: 12px; }
-    .btn-share { background: #25D366; color: white; width: 48%; }
-    .btn-copy { background: #f0f0f0; color: #333; border: 1px solid #ddd; width: 48%; }
-    table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 11px; }
-    th, td { border: 1px solid #ddd; padding: 5px; text-align: center; }
-    th { background: #FF6F00; color: white; }
-    .small { font-size: 11px; color: #666; }
-    .price-type { display: flex; gap: 8px; margin: 8px 0; }
-    .price-type label { font-weight: normal; display: flex; align-items: center; gap: 4px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مكتب شموسة - حاسبة الطاقة الشمسية</title>
+    <style>
+        * {box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif;}
+        body {background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #e2e8f0; margin: 0; padding: 15px; min-height: 100vh;}
+        .container {max-width: 600px; margin: 0 auto;}
+        .card {background: #1e293b; border-radius: 16px; padding: 20px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); border: 1px solid #334155;}
+        h1 {text-align: center; color: #f59e0b; margin: 0 0 20px 0; font-size: 24px;}
+        h3 {color: #f59e0b; margin: 0 0 15px 0; font-size: 18px;}
+        label {display: block; margin: 10px 0 5px; color: #cbd5e1; font-size: 14px;}
+        input, select {width: 100%; padding: 10px; border: 1px solid #475569; border-radius: 8px; background: #0f172a; color: #e2e8f0; font-size: 16px;}
+        input:focus, select:focus {outline: none; border-color: #f59e0b;}
+        .row {display: flex; gap: 10px; margin-bottom: 10px;}
+        .col {flex: 1;}
+        button {width: 100%; padding: 12px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px;}
+        .btn-green {background: #16a34a; color: white;}
+        .btn-blue {background: #2563eb; color: white;}
+        .btn-red {background: #dc2626; color: white; padding: 6px; font-size: 12px; width: auto;}
+        table {width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px;}
+        th {background: #ea580c; color: white; padding: 8px; text-align: center;}
+        td {background: #0f172a; padding: 8px; text-align: center; border: 1px solid #334155;}
+        .load-row {background: #0f172a; padding: 10px; border-radius: 8px; margin-bottom: 8px; border: 1px solid #334155;}
+        .night-box {background: #0c4a6e; padding: 12px; border-radius: 8px; margin-top: 15px; border: 1px solid #0ea5e9;}
+        .result-box {background: #1e293b; padding: 15px; border-radius: 12px; margin-top: 15px; border: 2px solid #f59e0b; line-height: 1.9;}
+        .hidden {display: none;}
+        .toggle-btn {cursor: pointer; user-select: none;}
+        small {color: #94a3b8; font-size: 12px;}
+        hr {border: none; border-top: 1px solid #334155; margin: 8px 0;}
+        .logo {text-align: center; margin-bottom: 10px; font-size: 28px;}
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h2 style="text-align:center; color:#FF6F00; margin:0 0 15px;">⚡ حاسبة الطاقة الشمسية</h2>
-    <div class="section-title" onclick="toggleSection('calc')">📊 الحاسبة - اضغط للفتح/الغلق</div>
-    <div class="section-content show" id="calc">
-      <div class="card">
-        <div class="grid">
-          <div><label>فولتية النظام</label><select id="sysVolt" onchange="calc()"><option value="12">12V</option><option value="24" selected>24V</option><option value="48">48V</option></select></div>
-          <div><label>المحافظة</label><select id="city" onchange="calc()"><option value="5.0">بابل - الحلة</option><option value="4.8">بغداد</option><option value="5.2">البصرة</option><option value="4.5">الموصل</option></select></div>
+    <div class="container">
+        <div class="logo">☀️</div>
+        <h1>مكتب شموسة - حاسبة الطاقة الشمسية</h1>
+        
+        <div class="card">
+            <div class="row">
+                <div class="col">
+                    <label>فولتية النظام</label>
+                    <select id="voltage">
+                        <option value="12">12V</option>
+                        <option value="24" selected>24V</option>
+                        <option value="48">48V</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label>نوع السعر</label>
+                    <select id="priceType">
+                        <option value="wholesale" selected>جملة</option>
+                        <option value="retail">مفرد</option>
+                    </select>
+                </div>
+            </div>
         </div>
-        <label>نوع السعر المستخدم بالحساب</label>
-        <div class="price-type"><label><input type="radio" name="priceType" value="retail" checked onchange="calc()"> مفرد</label><label><input type="radio" name="priceType" value="wholesale" onchange="calc()"> جملة</label></div>
-      </div>
-      <div class="card">
-        <label>الأحمال - أدخل بالأمبير وساعات التشغيل</label>
-        <div class="grid">
-          <div><label>ثلاجة أمبير</label><input type="number" id="fridgeA" value="2" oninput="calc()"></div><div><label>ساعات</label><input type="number" id="fridgeH" value="24" oninput="calc()"></div>
-          <div><label>سبلت أمبير</label><input type="number" id="acA" value="7" oninput="calc()"></div><div><label>ساعات</label><input type="number" id="acH" value="6" oninput="calc()"></div>
-          <div><label>ماطور ماء أمبير</label><input type="number" id="pumpA" value="3" oninput="calc()"></div><div><label>ساعات</label><input type="number" id="pumpH" value="2" oninput="calc()"></div>
-          <div><label>إنارة أمبير</label><input type="number" id="lightA" value="1" oninput="calc()"></div><div><label>ساعات</label><input type="number" id="lightH" value="8" oninput="calc()"></div>
-          <div><label>طباخ أمبير</label><input type="number" id="cookerA" value="10" oninput="calc()"></div><div><label>ساعات</label><input type="number" id="cookerH" value="1" oninput="calc()"></div>
-          <div><label>فرن أمبير</label><input type="number" id="ovenA" value="8" oninput="calc()"></div><div><label>ساعات</label><input type="number" id="ovenH" value="1" oninput="calc()"></div>
-          <div><label>مراوح أمبير</label><input type="number" id="fanA" value="0.5" oninput="calc()"></div><div><label>ساعات</label><input type="number" id="fanH" value="10" oninput="calc()"></div>
+
+        <div class="card">
+            <h3>☀️ الأحمال النهارية - الإجمالي اليومي</h3>
+            <div id="loadsContainer">
+                <div class="load-row">
+                    <div class="row">
+                        <div class="col"><label>ثلاجة أمبير</label><input type="number" class="amps" value="3" step="0.1"></div>
+                        <div class="col"><label>ساعات/يوم</label><input type="number" class="hours" value="24"></div>
+                    </div>
+                </div>
+                <div class="load-row">
+                    <div class="row">
+                        <div class="col"><label>سبلت أمبير</label><input type="number" class="amps" value="10" step="0.1"></div>
+                        <div class="col"><label>ساعات/يوم</label><input type="number" class="hours" value="6"></div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-blue" onclick="addLoadRow()">+ إضافة حمل نهاري</button>
+            
+            <div class="night-box">
+                <h3 style="color:#7dd3fc; margin:0 0 10px 0">🌙 الأحمال الليلية - تحدد حجم البطارية</h3>
+                <small>الأحمال اللي تشتغل بالليل بس. تكدر تضيف وتحذف براحتك</small>
+                <div id="nightLoadsContainer">
+                    <div class="load-row night-load">
+                        <div class="row">
+                            <div class="col"><label>اسم الحمل الليلي</label><input type="text" class="load-name" value="سبلت ليلي" placeholder="مثال: سبلت"></div>
+                            <div class="col"><button class="btn-red" onclick="this.closest('.load-row').remove(); calculateSystemSize()">حذف</button></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"><label>أمبير</label><input type="number" class="night-amps" value="10" step="0.1"></div>
+                            <div class="col"><label>ساعات ليلاً</label><input type="number" class="night-hours" value="5"></div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-blue" onclick="addNightLoadRow()" style="background:#0ea5e9">+ إضافة حمل ليلي</button>
+            </div>
         </div>
-        <div class="small">نفترض كل الأجهزة 220V AC</div>
-      </div>
-      <div class="card">
-        <label>اختر المواد من مخزنك</label>
-        <label>اللوح الشمسي</label><select id="panel" onchange="calc()"></select>
-        <label>البطارية</label><select id="battery" onchange="calc()"></select>
-        <label>الانفيرتر</label><select id="inverter" onchange="calc()"></select>
-      </div>
-      <div class="result">
-        <div>الاستهلاك: <b><span id="dailyAh">0</span> Ah/يوم</b> = <b><span id="dailyWh">0</span> Wh</b> على <span id="showVolt">24</span>V</div>
-        <div>الألواح: <b><span id="panelCount">0</span></b> | البطاريات: <b><span id="batCount">0</span></b></div>
-        <div>الكلفة الإجمالية <span id="priceTypeText">مفرد</span></div>
-        <div class="total"><span id="total">0</span> د.ع</div>
-        <div style="display:flex; justify-content:space-between;"><button class="btn btn-share" onclick="share()">مشاركة واتساب</button><button class="btn btn-copy" onclick="copy()">نسخ</button></div>
-      </div>
+
+        <div class="card">
+            <h3 class="toggle-btn" onclick="toggleSettings()">⚙️ الإعدادات والمخزن - اضغط للفتح/الغلق</h3>
+            <div id="settingsPanel" class="hidden">
+                <h3>إضافة مادة جديدة للمخزن</h3>
+                <label>اسم المادة</label>
+                <input type="text" id="productName" placeholder="مثال: بطارية ليثيوم 5 كيلو">
+                
+                <label>نوع المادة</label>
+                <select id="productType">
+                    <option value="panel">لوح شمسي</option>
+                    <option value="battery">بطارية</option>
+                    <option value="inverter">انفيرتر</option>
+                    <option value="other">أخرى</option>
+                </select>
+                
+                <label>المواصفة</label>
+                <small>واط للوح، كيلو واط-ساعة للبطارية، كيلو للانفيرتر</small>
+                <input type="number" id="productSpec" placeholder="550">
+                
+                <div class="row">
+                    <div class="col"><label>سعر الجملة</label><input type="number" id="priceWholesale" placeholder="120000"></div>
+                    <div class="col"><label>سعر المفرد</label><input type="number" id="priceRetail" placeholder="130000"></div>
+                </div>
+                
+                <button class="btn-green" id="addProductBtn" onclick="addProduct()">+ إضافة للمخزن</button>
+                
+                <h3 style="margin-top:20px">المواد الموجودة بمخزنك</h3>
+                <table id="productsTable">
+                    <thead>
+                        <tr>
+                            <th>النوع</th>
+                            <th>المادة</th>
+                            <th>مواصفة</th>
+                            <th>جملة</th>
+                            <th>مفرد</th>
+                            <th>حذف</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col"><button class="btn-blue" onclick="copyResults()">نسخ النتيجة</button></div>
+            <div class="col"><button class="btn-green" onclick="shareWhatsApp()">مشاركة واتساب</button></div>
+        </div>
     </div>
-    <div class="section-title" onclick="toggleSection('settings')">⚙️ الإعدادات والمخزن - اضغط للفتح/الغلق</div>
-    <div class="section-content" id="settings">
-      <div class="card">
-        <label>إضافة مادة جديدة للمخزن</label>
-        <input type="text" id="itemName" placeholder="اسم المادة">
-        <label>نوع المادة</label><select id="itemType"><option value="panel">لوح شمسي</option><option value="battery">بطارية</option><option value="inverter">انفيرتر</option></select>
-        <div class="grid">
-          <div><label>المواصفة</label><input type="number" id="itemSpec" placeholder="550"></div><div><label class="small">واط للوح، أمبير للبطارية، كيلو للانفيرتر</label></div>
-          <div><label>سعر الجملة</label><input type="number" id="itemWholesale" placeholder="120000"></div><div><label>سعر المفرد</label><input type="number" id="itemRetail" placeholder="130000"></div>
+
+<script>
+// المواد الجاهزة بالمخزن - مكتب شموسة
+let products = JSON.parse(localStorage.getItem('solarProducts')) || [
+    // الواح لونجي Longi
+    {id: 1, name: 'لونجي 450W', type: 'panel', spec: '450', priceWholesale: 125000, priceRetail: 135000},
+    {id: 2, name: 'لونجي 550W وجه واحد', type: 'panel', spec: '550', priceWholesale: 150000, priceRetail: 160000},
+    {id: 3, name: 'لونجي 640W وجهين', type: 'panel', spec: '640', priceWholesale: 182000, priceRetail: 190000},
+    
+    // بطاريات ليثيوم
+    {id: 4, name: 'بطارية ليثيوم 5 كيلو', type: 'battery', spec: '5', priceWholesale: 800000, priceRetail: 900000},
+    {id: 5, name: 'بطارية ليثيوم 10 كيلو', type: 'battery', spec: '10', priceWholesale: 1500000, priceRetail: 1650000},
+    {id: 6, name: 'بطارية ليثيوم 15 كيلو', type: 'battery', spec: '15', priceWholesale: 2200000, priceRetail: 2400000},
+    
+    // بطاريات تيوبلر
+    {id: 7, name: 'بطارية تيوبلر 200 أمبير', type: 'battery', spec: '200', priceWholesale: 165000, priceRetail: 180000},
+    {id: 8, name: 'بطارية تيوبلر 250 أمبير', type: 'battery', spec: '250', priceWholesale: 210000, priceRetail: 230000},
+    
+    // انفيرترات ساج Sako
+    {id: 9, name: 'انفيرتر ساج 2 كيلو', type: 'inverter', spec: '2', priceWholesale: 180000, priceRetail: 210000},
+    {id: 10, name: 'انفيرتر ساج 3.5 كيلو', type: 'inverter', spec: '3.5', priceWholesale: 280000, priceRetail: 320000},
+    {id: 11, name: 'انفيرتر ساج 5.5 كيلو', type: 'inverter', spec: '5.5', priceWholesale: 420000, priceRetail: 480000},
+    {id: 12, name: 'انفيرتر ساج 8 كيلو', type: 'inverter', spec: '8', priceWholesale: 680000, priceRetail: 750000},
+    
+    // انفيرترات ديا Deye
+    {id: 13, name: 'انفيرتر ديا 3 كيلو', type: 'inverter', spec: '3', priceWholesale: 420000, priceRetail: 480000},
+    {id: 14, name: 'انفيرتر ديا 5 كيلو', type: 'inverter', spec: '5', priceWholesale: 650000, priceRetail: 720000},
+    {id: 15, name: 'انفيرتر ديا 6 كيلو', type: 'inverter', spec: '6', priceWholesale: 780000, priceRetail: 860000},
+    {id: 16, name: 'انفيرتر ديا 8 كيلو', type: 'inverter', spec: '8', priceWholesale: 950000, priceRetail: 1050000},
+    {id: 17, name: 'انفيرتر ديا 10 كيلو', type: 'inverter', spec: '10', priceWholesale: 1180000, priceRetail: 1300000},
+    {id: 18, name: 'انفيرتر ديا 12 كيلو', type: 'inverter', spec: '12', priceWholesale: 1450000, priceRetail: 1600000},
+    
+    // انفيرترات سفولت Svolt
+    {id: 19, name: 'انفيرتر سفولت 3 كيلو', type: 'inverter', spec: '3', priceWholesale: 320000, priceRetail: 360000},
+    {id: 20, name: 'انفيرتر سفولت 5 كيلو', type: 'inverter', spec: '5', priceWholesale: 480000, priceRetail: 540000},
+    {id: 21, name: 'انفيرتر سفولت 6 كيلو', type: 'inverter', spec: '6', priceWholesale: 580000, priceRetail: 650000},
+    {id: 22, name: 'انفيرتر سفولت 8 كيلو', type: 'inverter', spec: '8', priceWholesale: 750000, priceRetail: 830000},
+    {id: 23, name: 'انفيرتر سفولت 10 كيلو', type: 'inverter', spec: '10', priceWholesale: 920000, priceRetail: 1020000},
+    {id: 24, name: 'انفيرتر سفولت 15 كيلو', type: 'inverter', spec: '15', priceWholesale: 1380000, priceRetail: 1520000}
+];
+let nextId = 25;
+
+function saveProducts() {
+    localStorage.setItem('solarProducts', JSON.stringify(products));
+    renderProducts();
+}
+
+function renderProducts() {
+    const tbody = document.querySelector('#productsTable tbody');
+    tbody.innerHTML = '';
+    products.forEach(p => {
+        tbody.innerHTML += `
+            <tr>
+                <td>${p.type === 'panel' ? 'لوح' : p.type === 'battery' ? 'بطارية' : p.type === 'inverter' ? 'انفيرتر' : 'أخرى'}</td>
+                <td>${p.name}</td>
+                <td>${p.spec} ${p.type === 'panel' ? 'W' : p.type === 'battery' ? 'KWh' : 'KW'}</td>
+                <td>${p.priceWholesale.toLocaleString()}</td>
+                <td>${p.priceRetail.toLocaleString()}</td>
+                <td><button class="btn-red" onclick="deleteProduct(${p.id})">حذف</button></td>
+            </tr>
+        `;
+    });
+}
+
+function addProduct() {
+    const name = document.getElementById('productName').value;
+    const type = document.getElementById('productType').value;
+    const spec = document.getElementById('productSpec').value;
+    const priceWholesale = parseInt(document.getElementById('priceWholesale').value) || 0;
+    const priceRetail = parseInt(document.getElementById('priceRetail').value) || 0;
+    
+    if (!name || !spec) {
+        alert('املأ اسم المادة والمواصفة');
+        return;
+    }
+    
+    products.push({id: nextId++, name, type, spec, priceWholesale, priceRetail});
+    saveProducts();
+    
+    document.getElementById('productName').value = '';
+    document.getElementById('productSpec').value = '';
+    document.getElementById('priceWholesale').value = '';
+    document.getElementById('priceRetail').value = '';
+}
+
+function deleteProduct(id) {
+    products = products.filter(p => p.id !== id);
+    saveProducts();
+}
+
+function addLoadRow() {
+    const container = document.getElementById('loadsContainer');
+    const div = document.createElement('div');
+    div.className = 'load-row';
+    div.innerHTML = `
+        <div class="row">
+            <div class="col"><label>اسم الحمل</label><input type="text" placeholder="مثال: مروحة"></div>
+            <div class="col"><button class="btn-red" onclick="this.closest('.load-row').remove(); calculateSystemSize()">حذف</button></div>
         </div>
-        <button class="btn btn-add" onclick="addItem()">+ إضافة للمخزن</button>
-      </div>
-      <div class="card"><label>المواد الموجودة بمخزنك</label><table id="stockTable"></table></div>
-    </div>
-  </div>
-  <script>
-    let stock = JSON.parse(localStorage.getItem('solarStock')) || [
-      {type: 'panel', name: 'لوح Longi 550W', spec: 550, wholesale: 120000, retail: 130000},
-      {type: 'panel', name: 'لوح Jinko 575W', spec: 575, wholesale: 125000, retail: 135000},
-      {type: 'battery', name: 'بطارية جل 200Ah', spec: 200, wholesale: 230000, retail: 250000},
-      {type: 'battery', name: 'بطارية ليثيوم 200Ah', spec: 200, wholesale: 1000000, retail: 1100000},
-      {type: 'inverter', name: 'انفيرتر 3KW', spec: 3, wholesale: 320000, retail: 350000},
-      {type: 'inverter', name: 'انفيرتر 5KW', spec: 5, wholesale: 500000, retail: 550000},
-    ];
-    function toggleSection(id) { document.getElementById(id).classList.toggle('show'); }
-    function saveStock() { localStorage.setItem('solarStock', JSON.stringify(stock)); renderStock(); }
-    function renderStock() {
-      const table = document.getElementById('stockTable');
-      table.innerHTML = '<tr><th>النوع</th><th>المادة</th><th>مواصفة</th><th>جملة</th><th>مفرد</th><th>حذف</th></tr>';
-      document.getElementById('panel').innerHTML = ''; document.getElementById('battery').innerHTML = ''; document.getElementById('inverter').innerHTML = '';
-      const typeNames = {panel: 'لوح', battery: 'بطارية', inverter: 'انفيرتر'}; const unitNames = {panel: 'W', battery: 'Ah', inverter: 'KW'};
-      stock.forEach((item, i) => {
-        table.innerHTML += `<tr><td>${typeNames[item.type]}</td><td>${item.name}</td><td>${item.spec} ${unitNames[item.type]}</td><td>${item.wholesale.toLocaleString()}</td><td>${item.retail.toLocaleString()}</td><td><button class="btn-del" onclick="delItem(${i})">حذف</button></td></tr>`;
-        const opt = document.createElement('option'); opt.value = i; opt.textContent = item.name; document.getElementById(item.type).appendChild(opt);
-      }); calc();
+        <div class="row">
+            <div class="col"><label>أمبير</label><input type="number" class="amps" value="1" step="0.1"></div>
+            <div class="col"><label>ساعات/يوم</label><input type="number" class="hours" value="1"></div>
+        </div>
+    `;
+    container.appendChild(div);
+}
+
+function addNightLoadRow() {
+    const container = document.getElementById('nightLoadsContainer');
+    const div = document.createElement('div');
+    div.className = 'load-row night-load';
+    div.innerHTML = `
+        <div class="row">
+            <div class="col"><label>اسم الحمل الليلي</label><input type="text" class="load-name" placeholder="مثال: إنارة"></div>
+            <div class="col"><button class="btn-red" onclick="this.closest('.load-row').remove(); calculateSystemSize()">حذف</button></div>
+        </div>
+        <div class="row">
+            <div class="col"><label>أمبير</label><input type="number" class="night-amps" value="1" step="0.1"></div>
+            <div class="col"><label>ساعات ليلاً</label><input type="number" class="night-hours" value="1"></div>
+        </div>
+    `;
+    container.appendChild(div);
+}
+
+function toggleSettings() {
+    document.getElementById('settingsPanel').classList.toggle('hidden');
+}
+
+function calculateSystemSize() {
+    let totalWattHours = 0;
+    let totalAmps = 0;
+    
+    document.querySelectorAll('#loadsContainer .load-row').forEach(row => {
+        let amps = parseFloat(row.querySelector('.amps').value) || 0;
+        let hours = parseFloat(row.querySelector('.hours').value) || 0;
+        let watts = amps * 220;
+        totalWattHours += watts * hours;
+        totalAmps += amps;
+    });
+    
+    let nightWattHours = 0;
+    let nightAmps = 0;
+    document.querySelectorAll('.night-load').forEach(row => {
+        let amps = parseFloat(row.querySelector('.night-amps').value) || 0;
+        let hours = parseFloat(row.querySelector('.night-hours').value) || 0;
+        nightWattHours += amps * 220 * hours;
+        nightAmps += amps;
+    });
+    
+    let systemVoltage = parseInt(document.getElementById('voltage').value);
+    
+    let panelWatt = 550;
+    let sunHours = 5;
+    let panelsNeeded = Math.ceil(totalWattHours / (panelWatt * sunHours * 0.8));
+    
+    let dod = 0.8;
+    let batteryKwhNeeded = nightWattHours / 1000 / dod;
+    let batteryKwhNeededRounded = Math.ceil(batteryKwhNeeded * 2) / 2;
+    
+    let maxAmps = Math.max(totalAmps, nightAmps);
+    let inverterSize = Math.ceil(maxAmps * 220 * 1.25 / 1000 * 2) / 2;
+    if (inverterSize < 1) inverterSize = 1;
+    
+    let priceType = document.getElementById('priceType').value;
+    let panelPrice = products.find(p => p.type === 'panel')?.[priceType === 'wholesale' ? 'priceWholesale' : 'priceRetail'] || 180000;
+    let batteryPricePerKwh = 160000;
+    let inverterPricePerKw = 120000;
+    
+    let totalCost = (panelsNeeded * panelPrice) + (batteryKwhNeededRounded * batteryPricePerKwh) + (inverterSize * inverterPricePerKw);
+    
+    let resultDiv = document.getElementById('systemResult');
+    if (!resultDiv) {
+        resultDiv = document.createElement('div');
+        resultDiv.id = 'systemResult';
+        resultDiv.className = 'result-box';
+        document.querySelector('.container').appendChild(resultDiv);
     }
-    function addItem() {
-      const name = itemName.value, type = itemType.value, spec = +itemSpec.value; const wholesale = +itemWholesale.value, retail = +itemRetail.value;
-      if (!name || !spec || !wholesale || !retail) return alert('املأ كل الحقول'); stock.push({type, name, spec, wholesale, retail});
-      itemName.value = itemSpec.value = itemWholesale.value = itemRetail.value = ''; saveStock(); alert('تمت الإضافة');
-    }
-    function delItem(i) { if (confirm('متأكد تريد تحذف؟')) { stock.splice(i, 1); saveStock(); } }
-    function calc() {
-      const sysV = +sysVolt.value; const sunH = +city.value; const priceType = document.querySelector('input[name="priceType"]:checked').value;
-      document.getElementById('showVolt').textContent = sysV; document.getElementById('priceTypeText').textContent = priceType == 'retail' ? 'مفرد' : 'جملة';
-      const loads = [fridgeA.value*220*fridgeH.value, acA.value*220*acH.value, pumpA.value*220*pumpH.value, lightA.value*220*lightH.value, cookerA.value*220*cookerH.value, ovenA.value*220*ovenH.value, fanA.value*220*fanH.value];
-      const dailyWh = loads.reduce((a,b) => a + b, 0); const dailyAh = dailyWh / sysV;
-      const p = stock[panel.value], b = stock[battery.value], inv = stock[inverter.value]; if (!p || !b || !inv) return;
-      const panelCount = Math.ceil(dailyWh / sunH * 1.3 / p.spec); let batCount = Math.ceil((dailyAh / 0.8) / b.spec); if (batCount < 2) batCount = 2;
-      const total = panelCount * p[priceType] + batCount * b[priceType] + inv[priceType] + 300000;
-      document.getElementById('dailyAh').textContent = dailyAh.toFixed(1); document.getElementById('dailyWh').textContent = dailyWh.toFixed(0);
-      document.getElementById('panelCount').textContent = panelCount; document.getElementById('batCount').textContent = batCount; document.getElementById('total').textContent = total.toLocaleString('en-US');
-    }
-    function share() {
-      const cityName = city.selectedOptions[0].text; const priceType = document.querySelector('input[name="priceType"]:checked').value == 'retail' ? 'مفرد' : 'جملة';
-      const msg = `*كشف منظومة طاقة شمسية*%0A📍 ${cityName} | نظام ${sysVolt.value}V%0A⚡ ${dailyAh.textContent} Ah/يوم = ${dailyWh.textContent} Wh%0A📦 ألواح: ${panelCount.textContent} | بطاريات: ${batCount.textContent}%0A💰 *الكلفة ${priceType}: ${total.textContent} د.ع*`;
-      window.open(`https://wa.me/?text=${msg}`, '_blank');
-    }
-    function copy() { navigator.clipboard.writeText(`الكلفة: ${total.textContent} د.ع - ${panelCount.textContent} لوح + ${batCount.textContent} بطارية`); alert('تم النسخ'); }
-    renderStock();
-  </script>
+    
+    resultDiv.innerHTML = `
+        <h3 style="color:#f59e0b; margin:0 0 10px 0">📊 حجم المنظومة المقترح - مكتب شموسة</h3>
+        <div>
+            <b>الاستهلاك اليومي الكلي:</b> ${(totalWattHours/1000).toFixed(1)} كيلو واط-ساعة<br>
+            <b>الاستهلاك الليلي:</b> ${(nightWattHours/1000).toFixed(1)} كيلو واط-ساعة<br>
+            <b>أعلى سحب لحظي:</b> ${maxAmps.toFixed(1)} أمبير ≈ ${(maxAmps*0.22).toFixed(1)} كيلو واط<br>
+            <hr>
+            <b>🔆 الألواح الشمسية:</b> ${panelsNeeded} لوح × 550 واط<br>
+            <b>🔋 سعة البطارية للتشغيل الليلي:</b> <span style="color:#4ade80; font-size:18px">${batteryKwhNeededRounded} كيلو واط-ساعة</span><br>
+            <b>⚡ الانفرتر:</b> ${inverterSize} كيلو واط نظام ${systemVoltage}V<br>
+            <hr>
+            <b>💰 الكلفة التقديرية:</b> <span style="color:#f59e0b; font-size:18px">${totalCost.toLocaleString()} د.ع</span><br>
+        </div>
+        <small>* البطارية محسوبة لتغطي كل الأحمال الليلية. تفريغ 80% لليثيوم</small>
+    `;
+}
+
+function copyResults() {
+    const result = document.getElementById('systemResult')?.innerText || 'لا توجد نتائج';
+    navigator.clipboard.writeText(result);
+    alert('تم النسخ');
+}
+
+function shareWhatsApp() {
+    const result = document.getElementById('systemResult')?.innerText || 'لا توجد نتائج';
+    const url = `https://wa.me/?text=${encodeURIComponent('مكتب شموسة - حاسبة الطاقة الشمسية:\n\n' + result)}`;
+    window.open(url, '_blank');
+}
+
+document.addEventListener('input', calculateSystemSize);
+document.addEventListener('DOMContentLoaded', () => {
+    renderProducts();
+    calculateSystemSize();
+});
+
+document.getElementById('addProductBtn').addEventListener('click', () => {
+    setTimeout(calculateSystemSize, 100);
+});
+</script>
 </body>
 </html>
