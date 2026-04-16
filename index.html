@@ -13,49 +13,57 @@
         }
         * {box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; transition: background 0.3s, color 0.3s;}
         body {background: var(--bg); color: var(--text); margin: 0; padding: 15px; min-height: 100vh;}
-        .container {max-width: 600px; margin: 0 auto; position: relative;}
-        .header {display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;}
-        .logo-area {text-align: center; flex: 1;}
-        .menu-btn {background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 20px;}
-        .dropdown {position: absolute; top: 50px; left: 15px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.4); z-index: 100; min-width: 180px; display: none;}
-        .dropdown.show {display: block;}
-        .dropdown-item {padding: 12px 16px; cursor: pointer; border-bottom: 1px solid var(--border);}
-        .dropdown-item:last-child {border-bottom: none;}
-        .dropdown-item:hover {background: var(--bg);}
-        .card {background: var(--card); border-radius: 16px; padding: 20px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); border: 1px solid var(--border);}
+       .container {max-width: 600px; margin: 0 auto; position: relative;}
+       .header {display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;}
+       .logo-area {text-align: center; flex: 1;}
+       .menu-btn {background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 20px;}
+       .dropdown {position: absolute; top: 50px; left: 15px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.4); z-index: 100; min-width: 180px; display: none;}
+       .dropdown.show {display: block;}
+       .dropdown-item {padding: 12px 16px; cursor: pointer; border-bottom: 1px solid var(--border);}
+       .dropdown-item:last-child {border-bottom: none;}
+       .dropdown-item:hover {background: var(--bg);}
+       .card {background: var(--card); border-radius: 16px; padding: 20px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); border: 1px solid var(--border);}
         h1 {text-align: center; color: var(--accent); margin: 0 0 5px 0; font-size: 24px;}
-        .office-phone {text-align: center; color: #7dd3fc; margin: 0 0 20px 0; font-size: 14px;}
+       .office-phone {text-align: center; color: #7dd3fc; margin: 0 0 20px 0; font-size: 14px;}
         h3 {color: var(--accent); margin: 0 0 15px 0; font-size: 18px;}
         label {display: block; margin: 10px 0 5px; color: var(--text); opacity: 0.8; font-size: 14px;}
         input, select {width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--input); color: var(--text); font-size: 16px;}
         input:focus, select:focus {outline: none; border-color: var(--accent);}
-        .row {display: flex; gap: 10px; margin-bottom: 10px;}
-        .col {flex: 1;}
+       .row {display: flex; gap: 10px; margin-bottom: 10px;}
+       .col {flex: 1;}
         button {width: 100%; padding: 12px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px;}
-        .btn-green {background: #16a34a; color: white;}
-        .btn-blue {background: #2563eb; color: white;}
-        .btn-orange {background: #ea580c; color: white;}
-        .btn-purple {background: #9333ea; color: white;}
-        .btn-red {background: #dc2626; color: white; padding: 6px; font-size: 12px; width: auto;}
+       .btn-green {background: #16a34a; color: white;}
+       .btn-blue {background: #2563eb; color: white;}
+       .btn-orange {background: #ea580c; color: white;}
+       .btn-purple {background: #9333ea; color: white;}
+       .btn-teal {background: #0d9488; color: white;}
+       .btn-red {background: #dc2626; color: white; padding: 6px; font-size: 12px; width: auto;}
+       .btn-small {padding: 8px; font-size: 14px; margin-top: 5px;}
         table {width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px;}
         th {background: #ea580c; color: white; padding: 8px; text-align: center;}
         td {background: var(--input); padding: 8px; text-align: center; border: 1px solid var(--border);}
-        .load-row {background: var(--input); padding: 10px; border-radius: 8px; margin-bottom: 8px; border: 1px solid var(--border);}
-        .night-box {background: #0c4a6e; padding: 12px; border-radius: 8px; margin-top: 15px; border: 1px solid #0ea5e9;}
+       .load-row {background: var(--input); padding: 10px; border-radius: 8px; margin-bottom: 8px; border: 1px solid var(--border);}
+       .night-box {background: #0c4a6e; padding: 12px; border-radius: 8px; margin-top: 15px; border: 1px solid #0ea5e9;}
         body.light-mode .night-box {background: #e0f2fe; border: 1px solid #0284c7;}
-        .result-box {background: var(--card); padding: 15px; border-radius: 12px; margin-top: 15px; border: 2px solid var(--accent); line-height: 1.9;}
-        .hidden {display: none !important;}
+       .result-box {background: var(--card); padding: 15px; border-radius: 12px; margin-top: 15px; border: 2px solid var(--accent); line-height: 1.9;}
+       .hidden {display: none!important;}
         small {opacity: 0.7; font-size: 12px;}
         hr {border: none; border-top: 1px solid var(--border); margin: 8px 0;}
-        .modal {position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 200; display: none; align-items: center; justify-content: center;}
-        .modal.show {display: flex;}
-        .modal-content {background: var(--card); padding: 25px; border-radius: 16px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; border: 1px solid var(--border);}
-        .close-modal {float: left; font-size: 28px; cursor: pointer; line-height: 1;}
-        .device-select-box {background: var(--input); padding: 12px; border-radius: 8px; margin-top: 15px; border: 1px solid var(--border);}
+       .modal {position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 200; display: none; align-items: center; justify-content: center;}
+       .modal.show {display: flex;}
+       .modal-content {background: var(--card); padding: 25px; border-radius: 16px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; border: 1px solid var(--border);}
+       .close-modal {float: left; font-size: 28px; cursor: pointer; line-height: 1;}
+       .device-select-box {background: var(--input); padding: 12px; border-radius: 8px; margin-top: 15px; border: 1px solid var(--border);}
+       .backup-box {background: #064e3b; padding: 12px; border-radius: 8px; margin-top: 15px; border: 1px solid #10b981;}
+        body.light-mode .backup-box {background: #d1fae5; border: 1px solid #059669;}
+       .save-notice {background: #1e3a8a; padding: 10px; border-radius: 6px; text-align: center; font-size: 13px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 8px;}
+        body.light-mode .save-notice {background: #dbeafe;}
+       .cost-item {display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed var(--border);}
+       .cost-total {font-size: 20px; color: var(--accent); font-weight: bold; padding-top: 12px; border-top: 2px solid var(--accent); margin-top: 12px; display: flex; justify-content: space-between;}
         @media print {
-            .no-print, .menu-btn, .dropdown {display: none;}
+           .no-print,.menu-btn,.dropdown {display: none;}
             body {background: white; color: black;}
-            .card, .result-box {border: 1px solid #000; box-shadow: none;}
+           .card,.result-box {border: 1px solid #000; box-shadow: none;}
         }
     </style>
 </head>
@@ -71,18 +79,18 @@
                 <div class="dropdown-item" onclick="openModal('contactModal')">📞 اتصل بنا</div>
             </div>
         </div>
-        
+
         <div class="logo-area">
             <div style="font-size: 28px;">☀️</div>
             <h1>مكتب شموسة</h1>
             <div class="office-phone">للطاقة الشمسية - الحلة | 07810169877</div>
         </div>
-        
+
         <div class="card no-print">
             <div class="row">
                 <div class="col">
                     <label>فولتية النظام</label>
-                    <select id="voltage">
+                    <select id="voltage" onchange="saveSettingsData()">
                         <option value="12">12V</option>
                         <option value="24" selected>24V</option>
                         <option value="48">48V</option>
@@ -90,7 +98,7 @@
                 </div>
                 <div class="col">
                     <label>نوع السعر</label>
-                    <select id="priceType">
+                    <select id="priceType" onchange="saveSettingsData()">
                         <option value="wholesale" selected>جملة</option>
                         <option value="retail">مفرد</option>
                     </select>
@@ -99,66 +107,43 @@
         </div>
 
         <div class="card no-print">
+            <div class="save-notice">
+                <span>✅</span>
+                <span>الأحمال تنحفظ اوتوماتيك - ما تروح ابد</span>
+            </div>
             <h3>☀️ الأحمال النهارية - مواد المنزل</h3>
-            <div id="loadsContainer">
-                <div class="load-row">
-                    <div class="row">
-                        <div class="col"><label>ثلاجة</label><input type="number" class="amps" value="3" step="0.1"></div>
-                        <div class="col"><label>ساعات/يوم</label><input type="number" class="hours" value="24"></div>
-                    </div>
-                </div>
-                <div class="load-row">
-                    <div class="row">
-                        <div class="col"><label>سبلت</label><input type="number" class="amps" value="10" step="0.1"></div>
-                        <div class="col"><label>ساعات/يوم</label><input type="number" class="hours" value="6"></div>
-                    </div>
-                </div>
-                <div class="load-row">
-                    <div class="row">
-                        <div class="col"><label>إنارة</label><input type="number" class="amps" value="1" step="0.1"></div>
-                        <div class="col"><label>ساعات/يوم</label><input type="number" class="hours" value="8"></div>
-                    </div>
-                </div>
+            <div id="loadsContainer"></div>
             <button class="btn-blue" onclick="addLoadRow()">+ إضافة حمل نهاري</button>
-            
+
             <div class="night-box">
                 <h3 style="color:#7dd3fc; margin:0 0 10px 0">🌙 الأحمال الليلية - مواد المنزل</h3>
                 <small>الأحمال اللي تشتغل بالليل وتحدد حجم البطارية</small>
-                <div id="nightLoadsContainer">
-                    <div class="load-row night-load">
-                        <div class="row">
-                            <div class="col"><label>سبلت ليلي</label><input type="number" class="night-amps" value="10" step="0.1"></div>
-                            <div class="col"><label>ساعات ليلاً</label><input type="number" class="night-hours" value="5"></div>
-                        </div>
-                    </div>
-                    <div class="load-row night-load">
-                        <div class="row">
-                            <div class="col"><label>تلفزيون + إنارة</label><input type="number" class="night-amps" value="2" step="0.1"></div>
-                            <div class="col"><label>ساعات ليلاً</label><input type="number" class="night-hours" value="6"></div>
-                        </div>
-                    </div>
-                </div>
+                <div id="nightLoadsContainer"></div>
                 <button class="btn-blue" onclick="addNightLoadRow()" style="background:#0ea5e9">+ إضافة حمل ليلي</button>
             </div>
+            <button class="btn-teal" onclick="saveAllLoads()">💾 حفظ الأحمال يدوياً</button>
         </div>
 
         <div class="card no-print">
             <h3>🔧 اختيار الأجهزة من المخزن</h3>
             <div class="device-select-box">
                 <label>نوع اللوح الشمسي</label>
-                <select id="selectedPanel"></select>
-                
+                <select id="selectedPanel" onchange="saveSettingsData()"></select>
+
                 <label>نوع الانفيرتر</label>
-                <select id="selectedInverter"></select>
-                
+                <select id="selectedInverter" onchange="saveSettingsData()"></select>
+
                 <label>نوع البطارية</label>
-                <select id="selectedBattery"></select>
-                
-                <label>سعر التركيب + ملحقات</label>
-                <input type="number" id="installCost" value="250000">
+                <select id="selectedBattery" onchange="saveSettingsData()"></select>
+
+                <label>💰 سعر التركيب + ملحقات + أسلاك + قواطع</label>
+                <input type="number" id="installCost" value="250000" onchange="saveSettingsData()" placeholder="مثال: 250000">
+                <small>يشمل: تركيب + قاعدة حديد + أسلاك + قواطع + فيوزات + MC4</small>
             </div>
-            <button class="btn-purple" onclick="calculateSystemSize()">💰 احسب التكلفة حسب الحمل</button>
+            <button class="btn-purple" onclick="calculateSystemSize()">💰 احسب التكلفة الكاملة</button>
         </div>
+
+        <div id="resultContainer"></div>
 
         <div class="row no-print">
             <div class="col"><button class="btn-blue" onclick="copyResults()">نسخ النتيجة</button></div>
@@ -180,7 +165,7 @@
             <input type="text" id="officePhone" value="07810169877">
             <label>العنوان</label>
             <input type="text" id="officeAddress" value="الحلة - بابل">
-            <button class="btn-green" onclick="saveSettings()">حفظ الإعدادات</button>
+            <button class="btn-green" onclick="saveOfficeSettings()">حفظ الإعدادات</button>
         </div>
     </div>
 
@@ -189,6 +174,16 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('inventoryModal')">&times;</span>
             <h3>📦 إدارة المخزن</h3>
+
+            <div class="backup-box">
+                <h3 style="color:#10b981; margin:0 0 10px 0">💾 النسخ الاحتياطي</h3>
+                <small>المواد والأحمال تنحفظ اوتوماتيك على جهازك</small>
+                <button class="btn-green btn-small" onclick="exportAllData()">📥 تصدير كل البيانات</button>
+                <button class="btn-blue btn-small" onclick="document.getElementById('importFile').click()">📤 استيراد بيانات</button>
+                <input type="file" id="importFile" accept=".json" style="display:none" onchange="importAllData(event)">
+            </div>
+
+            <hr>
             <label>اسم المادة</label>
             <input type="text" id="productName" placeholder="مثال: بطارية ليثيوم 5 كيلو">
             <label>نوع المادة</label>
@@ -204,8 +199,8 @@
                 <div class="col"><label>سعر الجملة</label><input type="number" id="priceWholesale"></div>
                 <div class="col"><label>سعر المفرد</label><input type="number" id="priceRetail"></div>
             </div>
-            <button class="btn-green" onclick="addProduct()">+ إضافة للمخزن</button>
-            <h3 style="margin-top:20px">المواد الموجودة</h3>
+            <button class="btn-green" onclick="addProduct()">+ إضافة للمخزن - تنحفظ نهائياً</button>
+            <h3 style="margin-top:20px">المواد المحفوظة نهائياً</h3>
             <table id="productsTable">
                 <thead><tr><th>النوع</th><th>المادة</th><th>مواصفة</th><th>جملة</th><th>مفرد</th><th>حذف</th></tr></thead>
                 <tbody></tbody>
@@ -219,9 +214,9 @@
             <span class="close-modal" onclick="closeModal('versionModal')">&times;</span>
             <h3>ℹ️ معلومات الإصدار</h3>
             <p><b>مكتب شموسة - حاسبة الطاقة الشمسية</b></p>
-            <p>الإصدار: 3.0</p>
+            <p>الإصدار: 6.0</p>
             <p>تاريخ التحديث: 2026/04/15</p>
-            <p>المميزات: اختيار اجهزة، حساب حسب الحمل، وضع ليلي، طباعة</p>
+            <p>المميزات: تفصيل سعر التنصيب، زر احسب، حفظ دائم، اختيار اجهزة</p>
             <p>برمجة خاصة لمكتب شموسة - الحلة</p>
         </div>
     </div>
@@ -235,238 +230,4 @@
             <p>📍 العنوان: الحلة - بابل</p>
             <p>📱 الموبايل: <a href="tel:07810169877">07810169877</a></p>
             <p>📧 الإيميل: <a href="mailto:wellao18@yahoo.com">wellao18@yahoo.com</a></p>
-            <p>💬 واتساب: <a href="https://wa.me/9647810169877">اضغط للمراسلة</a></p>
-            <hr>
-            <p><small>للاستفسار عن المنظومات الشمسية والبطاريات والانفيرترات</small></p>
-        </div>
-    </div>
-
-<script>
-let products = JSON.parse(localStorage.getItem('solarProducts')) || [
-    {id: 1, name: 'لونجي 450W', type: 'panel', spec: '450', priceWholesale: 125000, priceRetail: 135000},
-    {id: 2, name: 'لونجي 550W وجه واحد', type: 'panel', spec: '550', priceWholesale: 150000, priceRetail: 160000},
-    {id: 3, name: 'لونجي 640W وجهين', type: 'panel', spec: '640', priceWholesale: 182000, priceRetail: 190000},
-    {id: 4, name: 'بطارية ليثيوم 5 كيلو', type: 'battery', spec: '5', priceWholesale: 800000, priceRetail: 900000},
-    {id: 5, name: 'بطارية ليثيوم 10 كيلو', type: 'battery', spec: '10', priceWholesale: 1500000, priceRetail: 1650000},
-    {id: 6, name: 'بطارية ليثيوم 15 كيلو', type: 'battery', spec: '15', priceWholesale: 2200000, priceRetail: 2400000},
-    {id: 7, name: 'بطارية تيوبلر 200 أمبير', type: 'battery', spec: '200', priceWholesale: 165000, priceRetail: 180000},
-    {id: 8, name: 'بطارية تيوبلر 250 أمبير', type: 'battery', spec: '250', priceWholesale: 210000, priceRetail: 230000},
-    {id: 9, name: 'انفيرتر ساج 2 كيلو', type: 'inverter', spec: '2', priceWholesale: 180000, priceRetail: 210000},
-    {id: 10, name: 'انفيرتر ساج 3.5 كيلو', type: 'inverter', spec: '3.5', priceWholesale: 280000, priceRetail: 320000},
-    {id: 11, name: 'انفيرتر ساج 5.5 كيلو', type: 'inverter', spec: '5.5', priceWholesale: 420000, priceRetail: 480000},
-    {id: 12, name: 'انفيرتر ساج 8 كيلو', type: 'inverter', spec: '8', priceWholesale: 680000, priceRetail: 750000},
-    {id: 13, name: 'انفيرتر ديا 3 كيلو', type: 'inverter', spec: '3', priceWholesale: 420000, priceRetail: 480000},
-    {id: 14, name: 'انفيرتر ديا 5 كيلو', type: 'inverter', spec: '5', priceWholesale: 650000, priceRetail: 720000},
-    {id: 15, name: 'انفيرتر ديا 6 كيلو', type: 'inverter', spec: '6', priceWholesale: 780000, priceRetail: 860000},
-    {id: 16, name: 'انفيرتر ديا 8 كيلو', type: 'inverter', spec: '8', priceWholesale: 950000, priceRetail: 1050000},
-    {id: 17, name: 'انفيرتر ديا 10 كيلو', type: 'inverter', spec: '10', priceWholesale: 1180000, priceRetail: 1300000},
-    {id: 18, name: 'انفيرتر ديا 12 كيلو', type: 'inverter', spec: '12', priceWholesale: 1450000, priceRetail: 1600000},
-    {id: 19, name: 'انفيرتر سفولت 3 كيلو', type: 'inverter', spec: '3', priceWholesale: 320000, priceRetail: 360000},
-    {id: 20, name: 'انفيرتر سفولت 5 كيلو', type: 'inverter', spec: '5', priceWholesale: 480000, priceRetail: 540000},
-    {id: 21, name: 'انفيرتر سفولت 6 كيلو', type: 'inverter', spec: '6', priceWholesale: 580000, priceRetail: 650000},
-    {id: 22, name: 'انفيرتر سفولت 8 كيلو', type: 'inverter', spec: '8', priceWholesale: 750000, priceRetail: 830000},
-    {id: 23, name: 'انفيرتر سفولت 10 كيلو', type: 'inverter', spec: '10', priceWholesale: 920000, priceRetail: 1020000},
-    {id: 24, name: 'انفيرتر سفولت 15 كيلو', type: 'inverter', spec: '15', priceWholesale: 1380000, priceRetail: 1520000}
-];
-let nextId = 25;
-
-function toggleMenu() {
-    document.getElementById('menuDropdown').classList.toggle('show');
-}
-
-function openModal(id) {
-    closeAllModals();
-    document.getElementById(id).classList.add('show');
-    document.getElementById('menuDropdown').classList.remove('show');
-    if (id === 'inventoryModal') renderProducts();
-}
-
-function closeModal(id) {
-    document.getElementById(id).classList.remove('show');
-}
-
-function closeAllModals() {
-    document.querySelectorAll('.modal').forEach(m => m.classList.remove('show'));
-}
-
-function toggleTheme() {
-    document.body.classList.toggle('light-mode');
-    localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-    document.getElementById('menuDropdown').classList.remove('show');
-}
-
-function saveSettings() {
-    alert('تم حفظ الإعدادات');
-    closeModal('settingsModal');
-}
-
-function loadDeviceSelectors() {
-    const panelSelect = document.getElementById('selectedPanel');
-    const inverterSelect = document.getElementById('selectedInverter');
-    const batterySelect = document.getElementById('selectedBattery');
-    
-    panelSelect.innerHTML = '<option value="">اختر اللوح...</option>';
-    inverterSelect.innerHTML = '<option value="">اختر الانفيرتر...</option>';
-    batterySelect.innerHTML = '<option value="">اختر البطارية...</option>';
-    
-    products.forEach(p => {
-        const option = `<option value="${p.id}">${p.name} - ${p.spec}${p.type === 'panel' ? 'W' : p.type === 'battery' ? 'KWh' : 'KW'}</option>`;
-        if (p.type === 'panel') panelSelect.innerHTML += option;
-        if (p.type === 'inverter') inverterSelect.innerHTML += option;
-        if (p.type === 'battery') batterySelect.innerHTML += option;
-    });
-}
-
-function saveProducts() {
-    localStorage.setItem('solarProducts', JSON.stringify(products));
-    renderProducts();
-    loadDeviceSelectors();
-}
-
-function renderProducts() {
-    const tbody = document.querySelector('#productsTable tbody');
-    tbody.innerHTML = '';
-    products.forEach(p => {
-        tbody.innerHTML += `<tr><td>${p.type === 'panel' ? 'لوح' : p.type === 'battery' ? 'بطارية' : p.type === 'inverter' ? 'انفيرتر' : 'أخرى'}</td><td>${p.name}</td><td>${p.spec}</td><td>${p.priceWholesale.toLocaleString()}</td><td>${p.priceRetail.toLocaleString()}</td><td><button class="btn-red" onclick="deleteProduct(${p.id})">حذف</button></td></tr>`;
-    });
-}
-
-function addProduct() {
-    const name = document.getElementById('productName').value;
-    const type = document.getElementById('productType').value;
-    const spec = document.getElementById('productSpec').value;
-    const priceWholesale = parseInt(document.getElementById('priceWholesale').value) || 0;
-    const priceRetail = parseInt(document.getElementById('priceRetail').value) || 0;
-    if (!name || !spec) { alert('املأ اسم المادة والمواصفة'); return; }
-    products.push({id: nextId++, name, type, spec, priceWholesale, priceRetail});
-    saveProducts();
-    document.getElementById('productName').value = '';
-    document.getElementById('productSpec').value = '';
-    document.getElementById('priceWholesale').value = '';
-    document.getElementById('priceRetail').value = '';
-}
-
-function deleteProduct(id) {
-    products = products.filter(p => p.id !== id);
-    saveProducts();
-}
-
-function addLoadRow() {
-    const container = document.getElementById('loadsContainer');
-    const div = document.createElement('div');
-    div.className = 'load-row';
-    div.innerHTML = `<div class="row"><div class="col"><label>اسم الحمل</label><input type="text" placeholder="مثال: مروحة"></div><div class="col"><button class="btn-red" onclick="this.closest('.load-row').remove()">حذف</button></div></div><div class="row"><div class="col"><label>أمبير</label><input type="number" class="amps" value="1" step="0.1"></div><div class="col"><label>ساعات/يوم</label><input type="number" class="hours" value="1"></div></div>`;
-    container.appendChild(div);
-}
-
-function addNightLoadRow() {
-    const container = document.getElementById('nightLoadsContainer');
-    const div = document.createElement('div');
-    div.className = 'load-row night-load';
-    div.innerHTML = `<div class="row"><div class="col"><label>اسم الحمل الليلي</label><input type="text" class="load-name" placeholder="مثال: إنارة"></div><div class="col"><button class="btn-red" onclick="this.closest('.load-row').remove()">حذف</button></div></div><div class="row"><div class="col"><label>أمبير</label><input type="number" class="night-amps" value="1" step="0.1"></div><div class="col"><label>ساعات ليلاً</label><input type="number" class="night-hours" value="1"></div></div>`;
-    container.appendChild(div);
-}
-
-function calculateSystemSize() {
-    const panelId = document.getElementById('selectedPanel').value;
-    const inverterId = document.getElementById('selectedInverter').value;
-    const batteryId = document.getElementById('selectedBattery').value;
-    
-    if (!panelId || !inverterId || !batteryId) {
-        alert('الرجاء اختيار اللوح والانفيرتر والبطارية من القائمة');
-        return;
-    }
-    
-    const panel = products.find(p => p.id == panelId);
-    const inverter = products.find(p => p.id == inverterId);
-    const battery = products.find(p => p.id == batteryId);
-    const priceType = document.getElementById('priceType').value;
-    
-    let totalWattHours = 0, totalAmps = 0;
-    document.querySelectorAll('#loadsContainer .load-row').forEach(row => {
-        let amps = parseFloat(row.querySelector('.amps').value) || 0;
-        let hours = parseFloat(row.querySelector('.hours').value) || 0;
-        totalWattHours += amps * 220 * hours;
-        totalAmps += amps;
-    });
-    
-    let nightWattHours = 0, nightAmps = 0;
-    document.querySelectorAll('.night-load').forEach(row => {
-        let amps = parseFloat(row.querySelector('.night-amps').value) || 0;
-        let hours = parseFloat(row.querySelector('.night-hours').value) || 0;
-        nightWattHours += amps * 220 * hours;
-        nightAmps += amps;
-    });
-    
-    let systemVoltage = parseInt(document.getElementById('voltage').value);
-    let panelWatt = parseFloat(panel.spec);
-    let sunHours = 5;
-    let panelsNeeded = Math.ceil(totalWattHours / (panelWatt * sunHours * 0.8));
-    
-    let batteryKwh = parseFloat(battery.spec);
-    let dod = battery.name.includes('ليثيوم') ? 0.8 : 0.5;
-    let batteriesNeeded = Math.ceil((nightWattHours / 1000 / dod) / batteryKwh);
-    
-    let maxAmps = Math.max(totalAmps, nightAmps);
-    let inverterKw = parseFloat(inverter.spec);
-    
-    let panelCost = panelsNeeded * panel[priceType === 'wholesale' ? 'priceWholesale' : 'priceRetail'];
-    let batteryCost = batteriesNeeded * battery[priceType === 'wholesale' ? 'priceWholesale' : 'priceRetail'];
-    let inverterCost = inverter[priceType === 'wholesale' ? 'priceWholesale' : 'priceRetail'];
-    let installCost = parseInt(document.getElementById('installCost').value) || 0;
-    let totalCost = panelCost + batteryCost + inverterCost + installCost;
-    
-    let resultDiv = document.getElementById('systemResult');
-    if (!resultDiv) {
-        resultDiv = document.createElement('div');
-        resultDiv.id = 'systemResult';
-        resultDiv.className = 'result-box';
-        document.querySelector('.container').appendChild(resultDiv);
-    }
-    
-    resultDiv.innerHTML = `
-        <h3 style="color:var(--accent); margin:0 0 10px 0">📊 عرض سعر - مكتب شموسة</h3>
-        <div style="text-align:center; color:#7dd3fc; margin-bottom:10px;">للطاقة الشمسية - الحلة | 07810169877</div>
-        <div>
-            <b>الاستهلاك اليومي الكلي:</b> ${(totalWattHours/1000).toFixed(1)} كيلو واط-ساعة<br>
-            <b>الاستهلاك الليلي:</b> ${(nightWattHours/1000).toFixed(1)} كيلو واط-ساعة<br>
-            <b>أعلى سحب لحظي:</b> ${maxAmps.toFixed(1)} أمبير<br>
-            <hr>
-            <b>🔆 الألواح:</b> ${panelsNeeded} × ${panel.name} = ${panelCost.toLocaleString()} د.ع<br>
-            <b>🔋 البطاريات:</b> ${batteriesNeeded} × ${battery.name} = ${batteryCost.toLocaleString()} د.ع<br>
-            <b>⚡ الانفرتر:</b> 1 × ${inverter.name} = ${inverterCost.toLocaleString()} د.ع<br>
-            <b>🔧 تركيب + ملحقات:</b> ${installCost.toLocaleString()} د.ع<br>
-            <hr>
-            <b>💰 المجموع الكلي:</b> <span style="color:var(--accent); font-size:20px">${totalCost.toLocaleString()} د.ع</span><br>
-        </div>
-        <small>* العرض ساري لمدة 7 أيام. ضمان سنة على التركيب</small>
-    `;
-    
-    resultDiv.scrollIntoView({behavior: 'smooth'});
-}
-
-function copyResults() {
-    const result = document.getElementById('systemResult')?.innerText || 'لا توجد نتائج';
-    navigator.clipboard.writeText(result);
-    alert('تم النسخ');
-}
-
-function shareWhatsApp() {
-    const result = document.getElementById('systemResult')?.innerText || 'لا توجد نتائج';
-    const url = `https://wa.me/?text=${encodeURIComponent(result)}`;
-    window.open(url, '_blank');
-}
-
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('.menu-btn') && !e.target.closest('.dropdown')) {
-        document.getElementById('menuDropdown').classList.remove('show');
-    }
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    if (localStorage.getItem('theme') === 'light') document.body.classList.add('light-mode');
-    loadDeviceSelectors();
-});
-</script>
-</body>
-</html>
+            <p>💬 و
